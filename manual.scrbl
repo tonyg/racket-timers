@@ -21,7 +21,7 @@ a suggestion for improving it, please don't hesitate to
 This library provides utilities for managing a heap of timeouts when
 programming in an event-driven style with @racket[sync].
 
-@section{What to require}
+@section{API}
 
 All the functionality below can be accessed with a single
 @racket[require]:
@@ -72,9 +72,9 @@ itself) to produce the values to yield from the event.}
 			    [k-not-fired (-> any?)]) any?]{
 Checks the queue of timers in @racket[tm]. If none are ready to fire,
 tail-calls @racket[k-not-fired]. Otherwise, selects the first ready
-timer in the queue. If it has been cancelled, tail-calls
+timer in the queue. If the timer has been cancelled, tail-calls
 @racket[k-not-fired]. Otherwise, tail-calls @racket[k-fired] with the
-values returned from its handler callback.}
+values returned from the timer's handler callback.}
 
 @defproc[(fire-timers-evt [tm timer-manager?]) evt?]{
 Returns an event for use with @racket[sync] that is ready to fire only
